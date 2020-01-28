@@ -18,8 +18,8 @@ class Parallax extends Component {
 		this.onResize = this.onResize.bind(this);
 		this.getYOffset = this.getYOffset.bind(this);
 		this.setYOffset = this.setYOffset.bind(this);
-		this.speed = props.speed ? 1 - parseFloat(props.speed) : -0.3;
 		this.setInitialOffset = this.setInitialOffset.bind(this);
+		this.speed = props.speed ? 1 - props.speed : -0.3;
 		this.elementOffset = 0;
 
 		this.state = {
