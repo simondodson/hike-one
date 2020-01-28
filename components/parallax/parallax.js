@@ -15,10 +15,10 @@ class Parallax extends Component {
 		this.resizeTimer = null;
 		this.speed = props.speed ? 1 - parseFloat(props.speed) : -0.3;
 		this.elementOffset = 0;
-		this.duration = props.duration ? parseInt(props.duration) : 0.3;
 
 		this.state = {
 			ticking: false,
+			duration: 0.3,
 		};
 	}
 
@@ -102,11 +102,13 @@ class Parallax extends Component {
 	}
 
 	setYOffset(yOffset, noAnimation) {
-		this.duration === 0 || noAnimation
+		const { duration } = this.state;
+
+		noAnimation
 			? // don't use tweenlite if animation is instant
 			  (this.element.style.transform = `matrix(1, 0, 0, 1, 0, ${yOffset})`)
 			: // use tweenlite for a smooth parallax effect
-			  TweenLite.to(this.element, this.duration, { y: yOffset }, { ease: 'Linear.easeNone' });
+			  TweenLite.to(this.element, duration, { y: yOffset }, { ease: 'Linear.easeNone' });
 	}
 
 	getParallaxYOffset() {
@@ -165,7 +167,6 @@ class Parallax extends Component {
 }
 
 Parallax.propTypes = {
-	duration: PropTypes.number,
 	speed: PropTypes.number,
 	children: PropTypes.node,
 };
