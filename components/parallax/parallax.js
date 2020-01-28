@@ -1,18 +1,24 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import isElementInView from '../_helpers/isElementInView';
+import 'intersection-observer';
+import ResizeObserver from 'resize-observer-polyfill';
 import TweenLite from 'gsap';
+
+const options = {
+	root: null,
+	rootMargin: '0px 0px 100px 0px',
+	threshold: 0,
+};
 
 class Parallax extends Component {
 	constructor(props) {
 		super();
+		this.onObserve = this.onObserve.bind(this);
 		this.onScroll = this.onScroll.bind(this);
 		this.onResize = this.onResize.bind(this);
 		this.getYOffset = this.getYOffset.bind(this);
 		this.setYOffset = this.setYOffset.bind(this);
-		this.setInitialOffset = this.setInitialOffset.bind(this);
-		this.setOffsetOnResize = this.setOffsetOnResize.bind(this);
-		this.resizeTimer = null;
+		this.setInitialOffSet = this.setInitialOffSet.bind(this);
 		this.speed = props.speed ? 1 - parseFloat(props.speed) : -0.3;
 		this.elementOffset = 0;
 
@@ -23,22 +29,37 @@ class Parallax extends Component {
 	}
 
 	componentDidMount() {
-		// only add animation when requestAnimationFrame is supported
-		if (typeof window.requestAnimationFrame !== 'undefined') {
-			this.setInitialOffset();
-			window.addEventListener('scroll', this.onScroll);
-			window.addEventListener('resize', this.onResize);
-		}
+		this.setInitialOffSet();
+
+		// Create a resize observer
+		this.resizeObserver = new ResizeObserver(this.onResize);
+		this.resizeObserver.observe(this.containerEl);
+
+		// Create an intersection observer
+		this.intersectionObserver = new IntersectionObserver(this.onObserve, options);
+		this.intersectionObserver.observe(this.containerEl);
 	}
 
 	componentWillUnmount() {
+		this.intersectionObserver.disconnect();
+		this.resizeObserver.disconnect();
 		window.removeEventListener('scroll', this.onScroll);
 		window.removeEventListener('resize', this.onResize);
 	}
 
+	onObserve(entries) {
+		entries.forEach(entry => {
+			console.log(entry.target, entry.isIntersecting, this.containerEl.parentElement)
+			if (entry.isIntersecting) {
+				window.addEventListener('scroll', this.onScroll);
+				window.addEventListener('resize', this.onResize);
+			}
+		});
+	}
+
 	onScroll() {
 		const { ticking } = this.state;
-		// update an animation before the next repaint with requestAnimationFrame
+
 		if (!ticking) {
 			window.requestAnimationFrame(() => {
 				const YOffSet = this.getYOffset();
@@ -52,10 +73,13 @@ class Parallax extends Component {
 
 	onResize() {
 		const { ticking } = this.state;
-		// update an animation before the next repaint with requestAnimationFrame
+
 		if (!ticking) {
 			window.requestAnimationFrame(() => {
-				this.setOffsetOnResize();
+				this.initialScrollHeight = null;
+				this.setInitialOffSet();
+				const YOffSet = this.getYOffset();
+				this.setYOffset(YOffSet, true);
 				this.setState({ ticking: false });
 			});
 		}
@@ -72,31 +96,13 @@ class Parallax extends Component {
 		this.element.style.visibility = 'visible';
 	}
 
-	setOffsetOnResize() {
-		// add debounce for resize so it fires only add the end of resize
-		clearTimeout(this.resizeTimer);
-		this.resizeTimer = setTimeout(() => {
-			this.initialScrollHeight = null;
-			this.setInitialOffset();
-			const YOffSet = this.getYOffset();
-			this.setYOffset(YOffSet, true);
-		}, 250);
-	}
-
 	getYOffset() {
 		const scrolledHeight = document.body.scrollTop || document.documentElement.scrollTop || 0;
 
-		// only animate element when in view
-		if (!isElementInView(this.containerEl)) {
-			return;
-		}
-
 		// set initial scrollheight
 		this.initialScrollHeight = this.initialScrollHeight ? this.initialScrollHeight : scrolledHeight;
-
 		// calculate relative scroll height
 		let relativeScroll = scrolledHeight - this.initialScrollHeight;
-
 		// calculate y offset and return it
 		return relativeScroll * this.speed + this.elementOffset;
 	}
