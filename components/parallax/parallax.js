@@ -10,7 +10,7 @@ class Parallax extends Component {
 		this.onResize = this.onResize.bind(this);
 		this.getYOffset = this.getYOffset.bind(this);
 		this.setYOffset = this.setYOffset.bind(this);
-		this.setInitialOffSet = this.setInitialOffSet.bind(this);
+		this.setInitialOffset = this.setInitialOffset.bind(this);
 		this.setOffsetOnResize = this.setOffsetOnResize.bind(this);
 		this.resizeTimer = null;
 		this.speed = props.speed ? 1 - parseFloat(props.speed) : -0.3;
@@ -25,7 +25,7 @@ class Parallax extends Component {
 	componentDidMount() {
 		// only add animation when requestAnimationFrame is supported
 		if (typeof window.requestAnimationFrame !== 'undefined') {
-			this.setInitialOffSet();
+			this.setInitialOffset();
 			window.addEventListener('scroll', this.onScroll);
 			window.addEventListener('resize', this.onResize);
 		}
@@ -63,7 +63,7 @@ class Parallax extends Component {
 		this.setState({ ticking: true });
 	}
 
-	setInitialOffSet() {
+	setInitialOffset() {
 		this.elementOffset = this.getParallaxYOffset();
 
 		// apply offset
@@ -77,7 +77,7 @@ class Parallax extends Component {
 		clearTimeout(this.resizeTimer);
 		this.resizeTimer = setTimeout(() => {
 			this.initialScrollHeight = null;
-			this.setInitialOffSet();
+			this.setInitialOffset();
 			const YOffSet = this.getYOffset();
 			this.setYOffset(YOffSet, true);
 		}, 250);
