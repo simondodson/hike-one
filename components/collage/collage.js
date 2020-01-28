@@ -51,7 +51,7 @@ const Collage = ({ imageMedium = '', imageSmall = '', title = '', text = '', chi
 
 					{imageSmallTemplate('collage-image-small-hidden')}
 
-					<Parallax speed="1.1">
+					<Parallax speed={1.1}>
 						{imageSmallTemplate('collage-image-small shadow-low-opacity')}
 					</Parallax>
 				</div>
