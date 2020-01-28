@@ -49,7 +49,6 @@ class Parallax extends Component {
 
 	onObserve(entries) {
 		entries.forEach(entry => {
-			console.log(entry.target, entry.isIntersecting, this.containerEl.parentElement)
 			if (entry.isIntersecting) {
 				window.addEventListener('scroll', this.onScroll);
 				window.addEventListener('resize', this.onResize);
