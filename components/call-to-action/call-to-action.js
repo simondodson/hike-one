@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ButtonPrimaryLink from '../buttons/button-primary/button-primary-link';
+import ButtonLink from '../button/button-link';
 
 const CallToAction = ({
 	title = '',
@@ -20,13 +20,14 @@ const CallToAction = ({
 			style={{ backgroundColor: bgColor }}
 		>
 			{title && <p className={`call-to-action-title ${textColorClass}`}>{title}</p>}
-			<ButtonPrimaryLink
+			<ButtonLink
 				href={url}
 				target={isExternalLink ? '_blank' : '_self'}
 				classes="call-to-action-button btn-large"
+				variant="primary"
 			>
 				{buttonText}
-			</ButtonPrimaryLink>
+			</ButtonLink>
 		</div>
 	);
 };

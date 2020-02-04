@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Icon from '../icon/icon';
-import ButtonSecondaryLink from '../buttons/button-secondary/button-secondary-link';
+import ButtonLink from '../button/button-link';
 import setImageParameters from '../_helpers/setImageParameters';
 
 const CaseExtract = ({
@@ -50,13 +50,14 @@ const CaseExtract = ({
 			</Link>
 
 			<div className="case-extract-link-container">
-				<ButtonSecondaryLink
+				<ButtonLink
 					href="/work"
 					classes="case-extract-link btn-red-border"
 					icon="arrowRight"
+					variant="secondary"
 				>
 					Explore all work
-				</ButtonSecondaryLink>
+				</ButtonLink>
 			</div>
 		</section>
 	);

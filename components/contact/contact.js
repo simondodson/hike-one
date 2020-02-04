@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ButtonPrimaryLink from '../buttons/button-primary/button-primary-link';
+import ButtonLink from '../button/button-link';
 
 const Contact = ({ title = '', button = '', link = '', target = '_self', children }) => {
 	const childrenArray = React.Children.toArray(children);
@@ -9,13 +9,14 @@ const Contact = ({ title = '', button = '', link = '', target = '_self', childre
 		<section className="contact">
 			<div className="container-inner">
 				<h3 className="content">{title}</h3>
-				<ButtonPrimaryLink
+				<ButtonLink
 					href={`${link ? link : '/contact'}`}
 					target={target}
 					classes="btn-large content"
+					variant="primary"
 				>
 					{button}
-				</ButtonPrimaryLink>
+				</ButtonLink>
 			</div>
 			{parallaxLayerFront}
 		</section>

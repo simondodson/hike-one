@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import ButtonClean from '../buttons/button-clean/button-clean';
+import Button from '../button/button';
 
 class Filter extends Component {
 	constructor(props) {
@@ -38,18 +38,18 @@ class Filter extends Component {
 
 		return (
 			<div className="filter container">
-				<ButtonClean classes="filter__toggle" icon={icon} onClick={this.handleListToggle}>
+				<Button classes="filter__toggle" icon={icon} onClick={this.handleListToggle}>
 					{keyword}: {selectFilter}
-				</ButtonClean>
+				</Button>
 				<ul className={`filter__list container-inner ${toggleClass}`}>
 					{filters.map((filter, index) => {
 						const activeClass = selectFilter === filter ? 'filter_item--active' : '';
 
 						return (
 							<li key={index} className={`filter_item ${activeClass}`}>
-								<ButtonClean classes="filter__button" onClick={() => this.setActiveFilter(filter)}>
+								<Button classes="filter__button" onClick={() => this.setActiveFilter(filter)}>
 									{filter}
-								</ButtonClean>
+								</Button>
 							</li>
 						);
 					})}

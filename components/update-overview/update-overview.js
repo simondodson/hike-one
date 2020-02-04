@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import ButtonSecondary from '../buttons/button-secondary/button-secondary';
+import Button from '../button/button';
 import Filter from '../filter/filter';
 import UpdateExtractSmall from '../update-extract-small/update-extract-small';
 import UpdatesExtractLarge from '../updates-extract-large/updates-extract-large';
@@ -114,13 +114,14 @@ class UpdateOverview extends Component {
 					))}
 				</div>
 				{totalPages > pageOffset && (
-					<ButtonSecondary
+					<Button
 						icon={icon}
 						classes={`btn-large btn-red-border btn-centered spinner ${buttonClass}`}
 						onClick={this.handleClick}
+						variant="secondary"
 					>
 						Show more
-					</ButtonSecondary>
+					</Button>
 				)}
 			</div>
 		);

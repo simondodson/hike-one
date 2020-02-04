@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ButtonPrimary from '../buttons/button-primary/button-primary';
+import Button from '../button/button';
 import MailchimpInput from './mailchimp-input';
 
 const MailchimpForm = ({
@@ -49,9 +49,9 @@ const MailchimpForm = ({
 				/>
 			</div>
 
-			<ButtonPrimary type="submit" classes="submit-btn btn-large">
+			<Button type="submit" classes="submit-btn btn-large" variant="primary">
 				{buttonLabel}
-			</ButtonPrimary>
+			</Button>
 		</form>
 	</div>
 );

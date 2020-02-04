@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ButtonSecondary from '../buttons/button-secondary/button-secondary';
+import Button from '../button/button';
 
 const ServiceCard = ({ item = {}, Component = null, onMouseOver = null, onMouseLeave = null }) => {
 	const { button, iconColor, link, text, title } = item;
@@ -18,9 +18,14 @@ const ServiceCard = ({ item = {}, Component = null, onMouseOver = null, onMouseL
 					onMouseLeave={() => onMouseLeave(link.slug)}
 				/>
 				<p className="service-card__content-text">{text}</p>
-				<ButtonSecondary icon="arrowRight" classes="btn-red-border btn-wide" disabled={true}>
+				<Button
+					icon="arrowRight"
+					classes="btn-red-border btn-wide"
+					disabled={true}
+					variant="secondary"
+				>
 					{button}
-				</ButtonSecondary>
+				</Button>
 			</div>
 		</div>
 	);

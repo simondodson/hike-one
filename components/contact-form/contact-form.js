@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import scrollToElement from '../_helpers/scrollToElement';
 
-import ButtonPrimary from '../buttons/button-primary/button-primary';
+import Button from '../button/button';
 import CallToAction from '../call-to-action/call-to-action';
 import InputField from '../input-field/input-field';
 import SelectDropdown from '../select-dropdown/select-dropdown';
@@ -219,9 +219,9 @@ class ContactForm extends Component {
 									onChange={this.handleChange}
 								/>
 							</form>
-							<ButtonPrimary classes="submit-btn btn-large" onClick={this.handleSubmit}>
+							<Button classes="submit-btn btn-large" onClick={this.handleSubmit} variant="primary">
 								{currentForm.submitButtonLabel}
-							</ButtonPrimary>
+							</Button>
 						</>
 					)}
 				</div>
@@ -283,9 +283,9 @@ class ContactForm extends Component {
 								onChange={this.handleChange}
 							/>
 						</form>
-						<ButtonPrimary classes="submit-btn btn-large" onClick={this.handleSubmit}>
+						<Button classes="submit-btn btn-large" onClick={this.handleSubmit} variant="primary">
 							{currentForm.submitButtonLabel}
-						</ButtonPrimary>
+						</Button>
 					</>
 				)}
 

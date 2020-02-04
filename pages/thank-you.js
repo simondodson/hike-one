@@ -7,7 +7,7 @@ import Head from '../components/head/head';
 import MenuBar from '../components/menu-bar/menu-bar';
 import TextCenter from '../components/text-center/text-center';
 import * as TextCenterShapes from '../components/text-center/text-center-shapes';
-import ButtonPrimaryLink from '../components/buttons/button-primary/button-primary';
+import ButtonLink from '../button/button-link';
 import Footer from '../components/footer/footer';
 
 const Page = ({ thankYouPage, footer }) => (
@@ -22,9 +22,13 @@ const Page = ({ thankYouPage, footer }) => (
 				<TextCenterShapes.variation4Front position="front" />
 			</TextCenter>
 
-			<ButtonPrimaryLink href={thankYouPage.callToActionUrl} classes="btn-large btn-centered">
+			<ButtonLink
+				href={thankYouPage.callToActionUrl}
+				classes="btn-large btn-centered"
+				variant="primary"
+			>
 				{thankYouPage.callToActionLabel}
-			</ButtonPrimaryLink>
+			</ButtonLink>
 		</article>
 
 		<Footer form={footer.form} disableParallax />

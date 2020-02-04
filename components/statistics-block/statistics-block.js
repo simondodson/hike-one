@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ButtonSecondaryLink from '../buttons/button-secondary/button-secondary-link';
+import ButtonLink from '../button/button-link';
 
 const StatisticsBlock = ({ color = '', alignment = '', summary = {}, groups = [], link = {} }) => (
 	<div className={`colored-block ${color} ${alignment}`}>
@@ -24,9 +24,9 @@ const StatisticsBlock = ({ color = '', alignment = '', summary = {}, groups = []
 
 					{link && (
 						<div className="statistics-call-to-action">
-							<ButtonSecondaryLink href={link.target} target="_blank">
+							<ButtonLink href={link.target} target="_blank" variant="secondary">
 								{link.label}
-							</ButtonSecondaryLink>
+							</ButtonLink>
 						</div>
 					)}
 				</div>

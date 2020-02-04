@@ -1,0 +1,332 @@
+@import (reference) '../../styles/variables';
+
+@icon-size: 16px;
+
+.btn-basis {
+	display: inline-block;
+	padding: @spacing-default @spacing-default*3;
+	transition: background @animation-speed ease, color @animation-speed ease,
+		transform @animation-speed ease;
+	border-radius: 100px;
+	font-family: @font-main;
+	font-size: @body-text-s;
+	font-weight: @font-weight-normal;
+	line-height: @line-height-body-s;
+	text-decoration: none;
+	cursor: pointer;
+
+	@media @screen-768 {
+		padding: @spacing-default @spacing-default*4;
+		font-size: @body-text-m;
+		line-height: @line-height-body-m;
+	}
+
+	&:disabled,
+	&[disabled] {
+		opacity: 0.5;
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
+
+	.icon {
+		position: absolute;
+		margin-top: 2px;
+		margin-left: 8px;
+		animation-duration: @animation-speed;
+		animation-timing-function: linear;
+		animation-fill-mode: forwards;
+
+		svg {
+			width: @icon-size;
+			height: @icon-size;
+		}
+
+		svg path {
+			transition: fill @animation-speed ease;
+		}
+	}
+
+	&:not(.loading) {
+		.icon {
+			animation-name: horizontal-spring-icon-from;
+		}
+	}
+
+	&.vertical-spring {
+		.icon {
+			animation-name: vertical-spring-icon-from;
+		}
+	}
+
+	&.btn-icon {
+		padding: @spacing-default (@spacing-default*3 + @icon-size) @spacing-default @spacing-default*3;
+
+		@media @screen-768 {
+			padding: @spacing-default (@spacing-default*4 + @icon-size) @spacing-default
+				@spacing-default*4;
+		}
+	}
+
+	&.btn-large {
+		padding: @spacing-default @spacing-default*4;
+		font-weight: @font-weight-bold;
+
+		@media @screen-768 {
+			padding: 18px @spacing-default*5;
+		}
+	}
+
+	&.btn-icon.btn-large {
+		padding: @spacing-default*2 (@spacing-default*4 + @icon-size) @spacing-default*2
+			@spacing-default*4;
+
+		@media @screen-768 {
+			padding: 18px (@spacing-default*5 + @icon-size) 18px @spacing-default*5;
+		}
+	}
+}
+
+// gets included in actual buttons i.e. primary button and secondary button
+.btn-basis-hover {
+	&:not(.loading) {
+		.icon {
+			animation-name: horizontal-spring-icon-to;
+			animation-timing-function: ease-in-out;
+		}
+	}
+}
+
+.hover-arrow-down {
+	.icon {
+		animation-name: vertical-spring-icon-to;
+	}
+}
+
+.hover-arrow-up {
+	.icon {
+		animation-name: vertical-spring-icon-from;
+	}
+}
+
+@keyframes horizontal-spring-icon-to {
+	83.25% {
+		transform: translateX(6px);
+	}
+
+	100% {
+		transform: translateX(5px);
+	}
+}
+
+@keyframes horizontal-spring-icon-from {
+	0% {
+		transform: translateX(6px);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes vertical-spring-icon-to {
+	83.25% {
+		transform: translateY(4px);
+	}
+
+	100% {
+		transform: translateY(3px);
+	}
+}
+
+@keyframes vertical-spring-icon-from {
+	0% {
+		transform: translateY(4px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.btn-clean {
+	display: inline-block;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	color: @white;
+	font-family: @font-main;
+	font-size: @body-text-s;
+	font-weight: @font-weight-normal;
+	line-height: @line-height-body-s;
+	text-decoration: none;
+	cursor: pointer;
+
+	@media @screen-768 {
+		font-size: @body-text-m;
+		line-height: @line-height-body-m;
+	}
+
+	@media @screen-1170 {
+		font-size: @body-text-l;
+		line-height: @line-height-body-l;
+	}
+
+	&:disabled,
+	&[disabled] {
+		opacity: 0.5;
+	}
+
+	&[href]:hover, /* for links */
+	&[href]:focus,
+	&:enabled:hover, /* for buttons */
+	&:enabled:focus {
+		.btn-clean-hover;
+	}
+
+	.icon {
+		margin-left: 18px;
+
+		svg {
+			width: 19px;
+			height: 19px;
+			vertical-align: middle;
+		}
+
+		svg path {
+			transition: fill @animation-speed-fast ease;
+			fill: @white;
+		}
+	}
+}
+
+.btn-clean-hover {
+	.btn-basis-hover;
+
+	transition: background-color @animation-speed-fast;
+	background-color: transparent;
+}
+
+.btn-primary {
+	.btn-basis;
+
+	margin-bottom: @spacing-default*2;
+	border: 1px solid @red;
+	background-color: @red;
+	color: @white;
+
+	&[href]:hover, /* for links */
+	&[href]:focus,
+	&:enabled:hover, /* for buttons */
+	&:enabled:focus {
+		.btn-primary-hover;
+	}
+
+	.icon svg path {
+		fill: @white;
+	}
+}
+
+.btn-primary-hover {
+	.btn-basis-hover;
+
+	transition: background-color @animation-speed-fast;
+	background-color: @red-dark;
+}
+
+.btn-secondary {
+	.btn-basis;
+
+	margin-bottom: @spacing-default*2;
+	border: 1px solid @white;
+	background-color: transparent;
+	color: @white;
+
+	&[href]:hover, /* for links */
+	&[href]:focus,
+	&:enabled:hover, /* for buttons */
+	&:enabled:focus {
+		.btn-secondary-hover;
+	}
+
+	.icon svg path {
+		transition: fill @animation-speed ease;
+		fill: @white;
+	}
+
+	&.btn-wide {
+		padding: @spacing-default @spacing-default*7 @spacing-default @spacing-default*5;
+	}
+
+	&.btn-centered {
+		display: block;
+		margin: 0 auto;
+	}
+
+	&.btn-red-border {
+		border: 1px solid @red;
+		color: @red;
+
+		&[href]:hover, /* for links */
+		&[href]:focus,
+		&:enabled:hover, /* for buttons */
+		&:enabled:focus {
+			.btn-secondary-hover-red;
+		}
+
+		.icon svg path {
+			fill: @red;
+		}
+	}
+
+	&.vertical-spring {
+		.icon {
+			animation-name: vertical-spring-icon-from;
+		}
+
+		&[href]:hover, /* for links */
+		&[href]:focus,
+		&:enabled:hover, /* for buttons */
+		&:enabled:focus {
+			.hover-arrow-down;
+		}
+	}
+
+	&.vertical-spring.arrow-up {
+		.icon {
+			margin-top: 0;
+			animation-name: vertical-spring-icon-to;
+		}
+
+		&[href]:hover, /* for links */
+		&[href]:focus,
+		&:enabled:hover, /* for buttons */
+		&:enabled:focus {
+			.hover-arrow-up;
+		}
+	}
+}
+
+// this allows to include button hover states in other components
+.btn-secondary-hover {
+	.btn-basis-hover;
+
+	transition: color @animation-speed-fast, background-color @animation-speed-fast;
+	background-color: @white;
+	color: @blue;
+
+	.icon svg path {
+		fill: @blue;
+	}
+}
+
+.btn-secondary-hover-red {
+	transition: color @animation-speed-fast, background-color @animation-speed-fast;
+	background-color: @red;
+	color: @white;
+
+	.icon svg path {
+		fill: @white;
+	}
+}

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import ButtonClean from '../buttons/button-clean/button-clean';
+import Button from '../button/button';
 
 class SelectDropdown extends Component {
 	constructor(props) {
@@ -30,25 +30,25 @@ class SelectDropdown extends Component {
 		return (
 			<div className="select-dropdown">
 				<div className="dropdown-header">
-					<ButtonClean
+					<Button
 						classes={`select-btn ${activeButtonClass}`}
 						icon="arrowDown"
 						onClick={this.toggleDropdown}
 					>
 						{selectedItem || label}
-					</ButtonClean>
+					</Button>
 				</div>
 
 				{!isCollapsed && (
 					<ul className="dropdown-list">
 						{options.map(option => (
 							<li className="list-item" key={option.id}>
-								<ButtonClean
+								<Button
 									classes="select-item"
 									onClick={() => this.handleClick(option.id, option.title)}
 								>
 									{option.title}
-								</ButtonClean>
+								</Button>
 							</li>
 						))}
 					</ul>

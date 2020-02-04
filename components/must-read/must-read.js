@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Authors from '../authors/authors';
-import ButtonSecondary from '../buttons/button-secondary/button-secondary';
+import Button from '../button/button';
 
 class MustRead extends Component {
 	constructor(props) {
@@ -47,13 +47,14 @@ class MustRead extends Component {
 					</a>
 				))}
 				<div className={mustReadShortFade} />
-				<ButtonSecondary
+				<Button
 					onClick={this.handleClick}
 					classes={`must-read-toggle btn-red-border vertical-spring ${buttonClass}`}
 					icon={buttonIcon}
+					variant="secondary"
 				>
 					{buttonText}
-				</ButtonSecondary>
+				</Button>
 			</div>
 		);
 	}

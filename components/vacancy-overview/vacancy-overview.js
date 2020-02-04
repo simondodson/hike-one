@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ButtonPrimaryLink from '../buttons/button-primary/button-primary-link';
+import ButtonLink from '../button/button-link';
 
 const VacancyOverview = ({ overview = {}, vacancies = [] }) => (
 	<div className="vacancy-overview container">
@@ -17,9 +17,14 @@ const VacancyOverview = ({ overview = {}, vacancies = [] }) => (
 			))}
 		</ul>
 
-		<ButtonPrimaryLink href={overview.callToActionUrl} target="_blank" classes="btn-large content">
+		<ButtonLink
+			href={overview.callToActionUrl}
+			target="_blank"
+			classes="btn-large content"
+			variant="primary"
+		>
 			{overview.callToActionTitle}
-		</ButtonPrimaryLink>
+		</ButtonLink>
 	</div>
 );
 

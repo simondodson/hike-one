@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
-import ButtonSecondaryLink from '../buttons/button-secondary/button-secondary-link';
+import ButtonLink from '../button/button-link';
 
 const UpdateOverviewSmall = ({ children }) => (
 	<div className="update-overview-small container">
 		<div className="container-inner">{children}</div>
 		<div className="update-overview-button-centered">
-			<ButtonSecondaryLink href="/updates" classes="btn-red-border" icon="arrowRight">
+			<ButtonLink href="/updates" classes="btn-red-border" icon="arrowRight" variant="secondary">
 				All updates
-			</ButtonSecondaryLink>
+			</ButtonLink>
 		</div>
 	</div>
 );
